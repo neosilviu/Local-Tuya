@@ -1,0 +1,134 @@
+name: Charge Point
+products:
+  - id: emvuyyax4lekiooj
+    name: ChargePoint
+primary_entity:
+  entity: switch
+  icon: "mdi:ev-station"
+  dps:
+    - id: 112
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: number
+    name: Set Current
+    icon: "mdi:current-ac"
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 32
+        mapping:
+          - step: 1
+        unit: A
+  - entity: number
+    name: Set Time
+    icon: "mdi:battery-charging"
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+        mapping:
+          - scale: 1
+            step: 1
+        unit: H
+  - entity: number
+    name: Set Delay Time 
+    icon: "mdi:battery-charging"
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+        mapping:
+          - scale: 1
+            step: 1
+        unit: H
+  - entity: sensor
+    name: Current temperature
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10        
+        class: measurement
+  - entity: sensor
+    name: Voltage
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 107
+        type: integer
+        unit: V
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Car Status
+    icon: "mdi:form-textbox"
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Current
+    icon: "mdi:current-ac"
+    class: current
+    dps:
+      - id: 108
+        type: integer
+        unit: A
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10 
+  - entity: sensor
+    name: Power
+    class: power
+    dps:
+      - id: 109
+        type: integer
+        class: measurement
+        unit: kW
+        name: sensor
+        mapping:
+          - scale: 16.89
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    name: Energy
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: Wh
+        class: total_increasing
+        mapping:
+          - scale: 16.89

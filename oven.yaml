@@ -1,0 +1,133 @@
+name: Oven
+products:
+  - id: obu2at89quh8lpnx
+    name: built-in oven
+primary_entity:
+  entity: switch
+  icon: "mdi:stove"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Start/Pause
+    icon: "mdi:play-pause"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: select
+    name: Mode
+    icon: "mdi:form-select"
+    dps:
+      - id: 4
+        name: option
+        type: string
+        mapping:
+          - dps_val: "Light"
+            value: Light
+          - dps_val: "Defrost"
+            value: "Defrost"
+          - dps_val: "FullGrill"
+            value: "FullGrill"
+          - dps_val: "GrillWithFan"
+            value: "GrillWithFan"
+          - dps_val: "HalfGrill"
+            value: "HalfGrill"
+          - dps_val: "BottomHeat"
+            value: "BottomHeat"
+          - dps_val: "TraditionalBaking"
+            value: "TraditionalBaking"
+          - dps_val: "TraditionalBakingWithFan"
+            value: "TraditionalBakingWithFan"
+          - dps_val: "PureConvection"
+            value: "PureConvection"
+          - dps_val: "PizzaFunction"
+            value: "PizzaFunction"
+          - dps_val: "ECO"
+            value: "ECO"
+  - entity: number
+    name: Set Cook Time
+    icon: "mdi:timer-play"
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5000
+        mapping:
+          - scale: 1
+            step: 1
+        unit: min  
+  - entity: number
+    name: Set Cook Temperature
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        range:
+          min: 50
+          max: 5000
+        mapping:
+          - scale: 1
+            step: 10
+        unit: "℃"
+  - entity: sensor
+    name: Status
+    icon: "mdi:form-textbox"
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Current Temperature
+    class: temperature
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "℃"
+        mapping:
+          - scale: 1
+            step: 1 
+        class: measurement  
+  - entity: sensor
+    name: Remain Time
+    icon: "mdi:clock-time-eight-outline"
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Notification
+    icon: "mdi:message-badge-outline"
+    dps:
+      - id: 15
+        type: string
+        name: sensor
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 16
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: Light
+    category: config
+    icon: "mdi:lightbulb"
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
